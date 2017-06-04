@@ -91,6 +91,7 @@
 \textbf{Abstract} \\
 Die Datenstruktur eines gewichteter Graphen wird auf Adjazenzmatrix und -liste implementiert und der Algorithmus von Dykstra wird auf diesen mit 
 einer Komplexitätsuntersuchung ausgewertet. 
+\normalsize \flushleft
 \section{Aufgabenstellung}
 Es sollen zwei Implementationen von dem abstrakten Datentyp Graph 
 realisiert werden. Die Komplexität des Dykstras Algorithmus 
@@ -114,8 +115,18 @@ für die Messung der Komplexität verwedet werden.
 
 \section{Messung}
 
+\begin{figure}[htp]
+  	\centering
+    \includegraphics[width=\textwidth]{./IMG/plot.png}
+    \caption[shortone]{Aufwende der Suche in Abhängigkeit
+     von der Baumstruktur und der geuschten
+      Min und Max Werte, sowie der Anzahl der Knoten N}
+    \label{fig:plot}
+\end{figure}
 
-\normalsize \flushleft
+In Abbildung \ref{fig:plot} zu sehen...
+
+
   \begin{lstlisting}
 Knoten find_min(int m){
 	Knoten a_m = 0;
