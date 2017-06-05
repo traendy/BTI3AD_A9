@@ -5,8 +5,10 @@ public interface iNode<T> {
  public T getDatum();
  
  public void setDatum(T datum);
+ 
+ 
  /**
-  * Gibt den Vorgängerknoten aus zu dem man gehen muss um 
+  * Gibt den Vorgï¿½ngerknoten aus zu dem man gehen muss um 
   * am preiswertesten zu diesem zu kommen (Seite 85)
   * @return
   */
@@ -17,7 +19,7 @@ public interface iNode<T> {
   */
  public float getCost();
  /**
-  * gibt zurück ob der Knoten schon behandeltwurde (Seite 85)
+  * gibt zurï¿½ck ob der Knoten schon behandeltwurde (Seite 85)
   * @return
   */
  public boolean isMarked();

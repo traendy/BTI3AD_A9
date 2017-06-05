@@ -1,4 +1,3 @@
-
 public class Node<T> implements iNode<T>{
 
   private T datum;
