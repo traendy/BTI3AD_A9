@@ -1,7 +1,10 @@
 package dykstra;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import javax.sound.midi.ControllerEventListener;
 
 import graph.Node;
 import graph.iGraph;
@@ -17,27 +20,62 @@ public class Dykstra {
 	 * @param Graph
 	 * @return
 	 */
-	public Node<?> doTheDykstra(iGraph graph, Node<?> goal) {
-		this.workingGraph = graph;
-		this.goal = goal;
-		initialAllNodes();
-		ArrayList<DNode> nodes = new ArrayList<DNode>();
-
-		ArrayList<DNode> rand = new ArrayList<DNode>();
-		// rand= getRand(start);
-
-		// ggf muss dass fï¿½r die rekursion ausgelagert wernden
-		// reread Seite 85 3. ergï¿½nze Rand R bei v
-		for (int i = 0; rand.size() > 0; i++) {
-			// DNode<?> temp = getMinimalCost(rand);
-			// rand.remove(temp);
-			// temp.mark();
-
+	public List<DNode> doTheDykstra(iGraph graph,DNode start, DNode goal) {
+		ArrayList<DNode> shortestPath = new ArrayList<>();
+		//1.Initialisiere alle Knoten
+		initialAllNodes(start, graph);
+		List<DNode> border = new ArrayList<>();
+		//2. Bestimme den Rand border vom start
+		border =  getRand(start, graph);
+		//3. 
+		while(border.size()>0){
+		  DNode v = getMinimalCost(border);
+		  v.mark(); // makiere v
+		  border.remove(0);// entferne v aus R
+		  for(DNode n: getNextRand(v, graph)){//update alle Knoten des Randes die nicht markiert sind
+		    border.add(n);// fügesie in R ein
+		  }
+		  
 		}
-		return null;
+
+	  
+	  return getShortestPath(start, goal);
 	}
 
-	/**
+
+/**
+ * Fügt alle Knoten in eine Liste ein vom Start bis zum Ziel
+ * @param start startKnoten
+ * @param goal ziel Knoten
+ * @return Liste aller Knoten vom Start zum Ziel
+ */
+  private List<DNode> getShortestPath(DNode start, DNode goal) {
+    List<DNode> tempList= new ArrayList<>();
+    DNode temp = goal;
+   
+    while(temp!=start){
+      tempList.add(temp);
+      temp= temp.pred;
+    }
+    Collections.reverse(tempList);
+    return tempList;
+  }
+
+
+
+  private List<DNode>  getNextRand(DNode v, iGraph graph) {
+    List<DNode> neigbors = graph.getNeighbors(v);
+    for(DNode d: neigbors ){
+      if(d.marked){
+        neigbors.remove(d);
+      }else{
+        updateCost(d, v);
+      }
+    }
+	  return neigbors;
+  }
+
+  /**
 	 * Retruns the shortest (cheapest) way from start to goal
 	 * 
 	 * @param graph
@@ -71,11 +109,19 @@ public class Dykstra {
 		return shortestPath;
 	}
 
-	private void initialAllNodes() {
-		// initStartNode(start);
-		// for each
-		// initDefaultNOde(def);
-		//
+	/**
+	 * 1.Initialisiert alle Knoten des Graphen
+	 * @param start
+	 * @param graph
+	 */
+	private void initialAllNodes(Node<?> start, iGraph graph) {
+		initStartNode(start);
+		for(Node<?> node : graph.getNodes()){
+		  if(!node.equals(start)){
+		    initDefaultNOde(node);
+		  }
+		  
+		}
 	}
 
 	/**
@@ -104,18 +150,18 @@ public class Dykstra {
 
 	}
 
+	
+	
 	/**
-	 * Bestimmt den Rand der aus Knoten bestehen die adjazent zum
+	 * 2.Bestimmt den Rand der aus Knoten bestehen die adjazent zum
 	 * 
-	 * @param start
-	 *            sind
 	 * @param start
 	 *            Knoten dessen Rand bestimmt werden soll
 	 * @return Liste aller benachbarten Knoten
 	 */
-	private List<DNode> getRand(Node start) {
-
-		return null;
+	private List<DNode> getRand(DNode start, iGraph graph) {
+	  
+		return graph.getNeighbors(start);
 	}
 
 	/**
@@ -125,19 +171,9 @@ public class Dykstra {
 	 *            Liste mit zu unterscheidenden Knoten
 	 * @return Knoten mit geringstem Abstand
 	 */
-	private Node getMinimalCost(List<Node> list) {
-		return null;
-	}
-
-	/**
-	 * Findet alle Nachbarn zu einem Knoten center
-	 * 
-	 * @param center
-	 *            Knoten dessen Nachbarn gesucht sind
-	 * @return Liste aller Nachbarknoten
-	 */
-	private List<Node> getAllNeighbors(Node center) {
-		return null;
+	private DNode getMinimalCost(List<DNode> list) {
+	  Collections.sort(list);
+	return list.get(0);
 	}
 
 	/**

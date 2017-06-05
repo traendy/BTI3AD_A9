@@ -2,6 +2,8 @@ package graph;
 
 import java.util.List;
 
+import dykstra.DNode;
+
 public class ListGraph implements iGraph {
 
 	@Override
@@ -51,5 +53,11 @@ public class ListGraph implements iGraph {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+  @Override
+  public List<DNode> getNeighbors(DNode node) {
+    // TODO Auto-generated method stub
+    return null;
+  }
 
 }

@@ -2,9 +2,10 @@ package graph;
 
 import java.util.List;
 
+import dykstra.DNode;
+
 /**
  * Interface of an Graph
- * @author pallappapapp
  *
  */
 public interface iGraph {
@@ -47,7 +48,7 @@ public interface iGraph {
 	 * @param node
 	 * @return
 	 */
-	public List<Node<?>> getNeighbors(Node<?> node);
+	public List<DNode> getNeighbors(DNode node);
 
 	/**
 	 * 
@@ -61,4 +62,6 @@ public interface iGraph {
 	 * 
 	 */
 	public List<Node<?>> getNodes();
+
+  List<Node<?>> getNeighbors(Node<?> node);
 }

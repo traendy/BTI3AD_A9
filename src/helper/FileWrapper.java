@@ -17,7 +17,7 @@ public class FileWrapper {
 	}
 
 	/**
-	 * Open some fles to write into
+	 * Open some files to write into
 	 * 
 	 * @param names
 	 */
@@ -44,7 +44,7 @@ public class FileWrapper {
 	}
 
 	/**
-	 * wirte methode
+	 * write methode
 	 * 
 	 * @param fileNo
 	 * @param s
