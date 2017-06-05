@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.sound.midi.ControllerEventListener;
-
 import graph.Node;
 import graph.iGraph;
 
@@ -33,7 +31,7 @@ public class Dykstra {
 		  v.mark(); // makiere v
 		  border.remove(0);// entferne v aus R
 		  for(DNode n: getNextRand(v, graph)){//update alle Knoten des Randes die nicht markiert sind
-		    border.add(n);// fügesie in R ein
+		    border.add(n);// fï¿½gesie in R ein
 		  }
 		  
 		}
@@ -44,7 +42,7 @@ public class Dykstra {
 
 
 /**
- * Fügt alle Knoten in eine Liste ein vom Start bis zum Ziel
+ * Fï¿½gt alle Knoten in eine Liste ein vom Start bis zum Ziel
  * @param start startKnoten
  * @param goal ziel Knoten
  * @return Liste aller Knoten vom Start zum Ziel
