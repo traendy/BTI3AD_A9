@@ -1,32 +1,53 @@
 package graph;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import dykstra.DNode;
 
 public class MatrixGraph implements iGraph {
+  
+  public Map<Integer, Node<?>> matrixMap;
+  public int matrix [][];
+  public int anzNodes=0;
+  
+  
 
-	@Override
+	public MatrixGraph(Map<Integer, Node<?>>matrixMap) {
+    super();
+    this.matrixMap = matrixMap;
+    this.anzNodes = matrixMap.size();
+    this.matrix = new int[anzNodes][anzNodes];
+  }
+
+  @Override
 	public void addNode(Node<?> node) {
-		// TODO Auto-generated method stub
+		anzNodes++;
+		matrixMap.put(anzNodes, node);
 
 	}
 
 	@Override
 	public void addEdge(Edge edge) {
-		// TODO Auto-generated method stub
+		addEdge(edge.from, edge.to, edge.weight);
 
 	}
 
 	@Override
 	public void addEdge(Node<?> from, Node<?> to, int weight) {
-		// TODO Auto-generated method stub
+		matrix[from.id][to.id] = weight;
 
 	}
 
+	
+	/**
+	 * TODO Was ist mit den Edges
+	 */
 	@Override
 	public void removeNode(Node<?> node) {
-		// TODO Auto-generated method stub
+		matrixMap.remove(node);
+		anzNodes--;
 
 	}
 
@@ -38,20 +59,27 @@ public class MatrixGraph implements iGraph {
 
 	@Override
 	public List<Node<?>> getNeighbors(Node<?> node) {
-		// TODO Auto-generated method stub
-		return null;
+	  List<Node<?>> temp = new ArrayList<>();
+	  for(int i =0;i<anzNodes; i++){
+	    if(matrix[node.id][i]!=-1){ //TODO -1 == unendlich?
+	    temp.add(matrixMap.get(matrix[node.id][i]));
+	    }
+	  }
+		return temp;
 	}
 
 	@Override
-	public int getWeight(Node<?> nodeA, Node<?> nodeB) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getWeight(Node<?> nodeA, Node<?> nodeB) {		
+		return matrix[nodeA.id][nodeB.id];
 	}
 
 	@Override
 	public List<Node<?>> getNodes() {
-		// TODO Auto-generated method stub
-		return null;
+	  List<Node<?>> temp = new ArrayList<>();
+	  for(int i=0; i<anzNodes; i++){
+	    temp.add(matrixMap.get(i));
+	  }
+		return temp;
 	}
 
   @Override
