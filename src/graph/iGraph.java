@@ -37,31 +37,38 @@ public interface iGraph {
 	public void removeNode(Node<?> node);
 
 	/**
-	 * 
-	 * @param from
-	 * @param to
+	 * Travers from a node to another
+	 * @param from startNode
+	 * @param to   endnode
 	 */
 	public void traverse(Node<?> from, Node<?> to);
 
 	/**
-	 * 
-	 * @param node
-	 * @return
+	 * retruns all Neighbors of a Node
+	 * @param node node whoms neighbors are wanted
+	 * @return list of nodes
 	 */
 	public List<DNode> getNeighbors(DNode node);
 
 	/**
-	 * 
-	 * @param nodeA
-	 * @param nodeB
-	 * @return
+	 * Returns the weight of an edge between 2 nodes
+	 * @param nodeA start node
+	 * @param nodeB end node of edge
+	 * @return weight of the edge
 	 */
 	public int getWeight(Node<?> nodeA, Node<?> nodeB);
 	
 	/**
-	 * 
+	 * Returns all Nodes in a Graph
+	 * @return List of all nodes in Graph
 	 */
 	public List<Node<?>> getNodes();
 
-  List<Node<?>> getNeighbors(Node<?> node);
+	
+	/**
+   * retruns all Neighbors of a Node
+   * @param node node whoms neighbors are wanted
+   * @return list of nodes
+   */
+  public List<Node<?>> getNeighbors(Node<?> node);
 }

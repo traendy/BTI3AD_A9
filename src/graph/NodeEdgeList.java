@@ -3,7 +3,7 @@ package graph;
 import java.util.HashMap;
 /**#
  * Gibt einem Knoten eine Liste aus Knoten zu denen er benachbart ist und die 
- * Kostenum die Nachbarn zu erreichen
+ * Kostenum die Nachbarn zu erreichen.
  * @author peter
  *
  */
