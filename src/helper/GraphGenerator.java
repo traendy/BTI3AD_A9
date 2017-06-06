@@ -30,8 +30,8 @@ public class GraphGenerator {
         	  tempMatrix[i][j] = 0;
           }
           else {
-        	  tmp=random.nextInt(100);//also 33% der f�lle keine Kante?
-        	  if (tmp%3 == 0){
+        	  tmp=random.nextInt(100);//also 50% der f�lle keine Kante?
+        	  if (tmp%2 == 0){
         		  tempMatrix[i][j] = -1;
         		  tempMatrix[j][i] = -1;
         	  } else {

@@ -18,7 +18,7 @@ import helper.GraphGenerator;
  */
 public class Sample {
 
-	public final static int MAX = 5;
+	public final static int MAX = 3;
 	public final static int BASE = 10;
 	public final static int TIMES = 3;
 
@@ -28,13 +28,13 @@ public class Sample {
 	public static Dykstra dykmg;
 	public static Dykstra dyklg;
 	
-	static int mgNeighborSum=0;
-	static int mgWeightSum=0;
-	static int mgCountSum=0;
+	static long mgNeighborSum=0;
+	static long mgWeightSum=0;
+	static long mgCountSum=0;
 	
-	static int lgNeighborSum=0;
-	static int lgWeightSum=0;
-	static int lgCountSum=0;
+	static long lgNeighborSum=0;
+	static long lgWeightSum=0;
+	static long lgCountSum=0;
 
 	public static void main(String... args) {
 
@@ -65,11 +65,13 @@ public class Sample {
     			mgWeightSum += Count.getweight;
     			mgNeighborSum += Count.neighbor;
     			mgCountSum += Count.count;
-    			
+    			System.out.println("matrix end");
     			dyklg = new Dykstra(lg,nodeList.get(j));
     			lgWeightSum += Count.getweight;
     			lgNeighborSum += Count.neighbor;
     			lgCountSum += Count.count;
+    			System.out.println("list end");
+    			System.gc();
     		}
     		f.write(0,";"+mgNeighborSum/TIMES);
     		f.write(0,";"+lgNeighborSum/TIMES);

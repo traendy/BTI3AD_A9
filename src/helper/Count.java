@@ -29,6 +29,7 @@ public class Count {
 	 */
 	public static void up() {
 		count++;
+		/*
 		switch (count) {
 		case 1:
 			System.out.println("one...");
@@ -44,6 +45,7 @@ public class Count {
 			System.out.println("NainTausend,  HAHAHAHA");
 			break;
 		}
+		*/
 	}
 
 	/**
