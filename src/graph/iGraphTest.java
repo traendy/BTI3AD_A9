@@ -17,6 +17,79 @@ public class iGraphTest {
   ListGraph listGraph;
   List<Node<?>> nodes;
   
+  MatrixGraph dykMatGra;
+  ListGraph dykLiGra;
+  List<Node<?>> dykNoList;
+  
+  @Before
+  public void initDyk(){
+    
+    
+    
+    /*  TEST GRAPH FOR DYKSTRA
+     *    0_             _4
+     *      \1        3/  |
+     *       \___   __/   |
+     *            1       |5
+     *          /  \      |
+     *      _2_-    \ 4   |
+     *     /          \__ |
+     *    2               3
+     * 
+     */
+    
+    int[][] dykmat = {{0, 1, -1, -1, -1},
+                      {1, 0, 2, 4, 3},
+                      {-1, 2, 0, -1, -1},
+                      {-1, 4, -1, 0, 5},
+                      {-1, 3, -1, 5, 0}};
+    dykNoList = new ArrayList<>();
+    for(int i=0; i<5; i++){
+      dykNoList.add(new Node<Integer>(i));
+    }
+    dykMatGra = new MatrixGraph(dykmat, dykNoList);
+    dykLiGra = new ListGraph(GraphGenerator.genListGraph(dykmat, dykNoList));
+  }
+  @Test
+  public void testGetNeighborsDyk(){
+    List <Node<?>> dykTempM = new ArrayList<>();
+    List <Node<?>> dykTempL = new ArrayList<>();
+    dykTempM = dykMatGra.getNeighbors(dykNoList.get(1));
+    dykTempL = dykLiGra.getNeighbors(dykNoList.get(1));
+    boolean isSame = true;
+    for(int i =0; i<dykTempM.size();i++){
+      if(dykTempL.get(i).equals(dykTempM.get(i))){
+        //System.out.println(dykTempM.get(i));
+        //System.out.println(dykTempL.get(i));
+      }else{
+        isSame= false;
+      }
+    }
+   
+    assertTrue(isSame);
+  }
+  
+  @Test
+  public void testGetNodesDyk(){
+    List <Node<?>> dykTempM = new ArrayList<>();
+    List <Node<?>> dykTempL = new ArrayList<>();
+    dykTempM = dykMatGra.getNodes();
+    dykTempL = dykLiGra.getNodes(); 
+    boolean isSame = true;
+    for(int i =0; i<dykTempM.size();i++){
+      if(dykTempL.get(i).equals(dykTempM.get(i))){
+        //System.out.println(dykTempM.get(i));
+        //System.out.println(dykTempL.get(i));
+      }else{
+        isSame= false;
+      }
+    }
+   
+    assertTrue(isSame);
+  }
+  
+  
+  
   @Before
   public void init(){
     nodes = new ArrayList<>();

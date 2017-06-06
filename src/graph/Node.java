@@ -48,6 +48,10 @@ public class Node<T> {
 		}
 		return ret;
 	}
+  @Override
+  public String toString() {
+    return "Node [id=" + id + ", datum=" + datum + "]";
+  }
 
 
 }

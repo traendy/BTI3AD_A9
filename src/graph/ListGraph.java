@@ -105,7 +105,7 @@ public class ListGraph implements iGraph {
 	    index++;
 	  }
 	  //füge alle Nachbarn zu der Liste hinzu
-	  System.out.println("size: " +graphList.get(index).neighbors.size());
+	
 	
 	    temp.addAll(graphList.get(index).neighbors.keySet());
 	  
