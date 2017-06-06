@@ -17,22 +17,22 @@ public interface iGraph {
 	public void addNode(Node<?> node);
 	
 	/**
-	 * 
+	 * Adds an Edge 
 	 * @param edge
 	 */
 	public void addEdge(Edge edge);
 	
 	/**
-	 * 
-	 * @param from
-	 * @param to
-	 * @param weight
+	 * Adds an Edge 
+	 * @param from Node where the edge starts
+	 * @param to   Node where the edge ends
+	 * @param weight Weight of the Edge != -1 && 0
 	 */
 	public void addEdge(Node<?> from, Node<?> to, int weight);
 
 	/**
-	 * 
-	 * @param node
+	 * Removes a node in a Graph
+	 * @param node node to remove
 	 */
 	public void removeNode(Node<?> node);
 

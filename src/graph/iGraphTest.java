@@ -6,17 +6,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import helper.GraphGenerator;
 
 public class iGraphTest {
-  
+  /**
+   * fields for functionality tests
+   */
   MatrixGraph matrixGraph;
   ListGraph listGraph;
   List<Node<?>> nodes;
-  
+  /**
+   * Fields for Dykstra tests
+   */
   MatrixGraph dykMatGra;
   ListGraph dykLiGra;
   List<Node<?>> dykNoList;
@@ -50,6 +53,9 @@ public class iGraphTest {
     dykMatGra = new MatrixGraph(dykmat, dykNoList);
     dykLiGra = new ListGraph(GraphGenerator.genListGraph(dykmat, dykNoList));
   }
+  /**
+   * tests if get Neigbhors works
+   */
   @Test
   public void testGetNeighborsDyk(){
     List <Node<?>> dykTempM = new ArrayList<>();
@@ -68,7 +74,9 @@ public class iGraphTest {
    
     assertTrue(isSame);
   }
-  
+  /**
+   * Tests if get Nodes works
+   */
   @Test
   public void testGetNodesDyk(){
     List <Node<?>> dykTempM = new ArrayList<>();
@@ -89,7 +97,9 @@ public class iGraphTest {
   }
   
   
-  
+  /**
+   * Initialises the default test data
+   */
   @Before
   public void init(){
     nodes = new ArrayList<>();
@@ -104,6 +114,9 @@ public class iGraphTest {
     
   }
 
+  /**
+   * tests if addNode works
+   */
   @Test
   public void testAddNode() {
     Node<Integer> node = new Node<Integer>(100);
@@ -114,6 +127,9 @@ public class iGraphTest {
     
   }
 
+  /**
+   * tests if add Edge is possible
+   */
   @Test
   public void testAddEdgeEdge() {
     Edge edge = new Edge(nodes.get(0), nodes.get(2), 999);
@@ -129,6 +145,9 @@ public class iGraphTest {
     testAddEdgeEdge();
   }
 
+  /**
+   * tetst the remove node method
+   */
   @Test
   public void testRemoveNode() {
     Node<?> node = nodes.get(0);
@@ -142,7 +161,9 @@ public class iGraphTest {
     
   }
 
-
+  /**
+   * tests if a weight can be extracted
+   */
   @Test
   public void testGetWeight() {
 
@@ -152,7 +173,9 @@ public class iGraphTest {
     System.out.println(lweight);
     assertTrue(0==lweight-mweight);
   }
-
+/**
+ * test get Nodes in default
+ */
   @Test
   public void testGetNodes() {
     boolean lGraphList = true;
@@ -172,6 +195,9 @@ public class iGraphTest {
     assertTrue(lGraphList&&mGraphList);
   }
 
+  /**
+   * tests getNeighbors in Default
+   */
   @Test
   public void testGetNeighborsNodeOfQ() {
     List<Node<?>> tempL =listGraph.getNeighbors(nodes.get(0));
