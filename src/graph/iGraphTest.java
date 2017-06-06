@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import helper.GraphGenerator;
@@ -73,12 +74,37 @@ public class iGraphTest {
 
   @Test
   public void testGetNodes() {
-    fail("Not yet implemented");
+    boolean lGraphList = true;
+    boolean mGraphList = true;
+    List<Node<?>> tempList = listGraph.getNodes();
+    for(int i=0; i<tempList.size();i++){
+      if(!tempList.get(i).equals(nodes.get(i))){
+        lGraphList= false;
+      }
+    }
+    tempList = matrixGraph.getNodes();
+    for(int i=0; i<tempList.size();i++){
+      if(!tempList.get(i).equals(nodes.get(i))){
+        mGraphList= false;
+      }
+    }
+    assertTrue(lGraphList&&mGraphList);
   }
 
   @Test
   public void testGetNeighborsNodeOfQ() {
-    fail("Not yet implemented");
+    List<Node<?>> tempL =listGraph.getNeighbors(nodes.get(0));
+    List<Node<?>> tempM =matrixGraph.getNeighbors(nodes.get(0));
+    boolean gotSomeNeighbors = true;
+    if(tempL.size()!=tempM.size()){
+      gotSomeNeighbors = false;
+      System.out.println(tempL.size());
+      System.out.println(tempM.size());
+      
+    }
+    
+    assertTrue(gotSomeNeighbors);
+    
   }
 
 }
