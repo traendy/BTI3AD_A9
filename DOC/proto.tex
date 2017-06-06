@@ -102,14 +102,39 @@ Zudem sollen zufallsgeneriertere Graphen erstellt werden, welche
 für die Messung der Komplexität verwedet werden.
 
 \subsection{Grapheninterface und Implementationsarten}
+\begin{figure}[htp]
+  	\centering
+    \includegraphics[width=\textwidth]{./IMG/graph.png}
+    \caption[shortone]{UML Diagramm, der Implementation der Graphendarstellungen}
+    \label{fig:plot}
+\end{figure}
 
 \subsubsection{Adjazenzmatrix}
 
+Eine Adjazenzmatrix eines Graphen ist eine Matrix, die speichert, welche Knoten des Graphen durch eine Kante verbunden sind. Sie besitzt für jeden Knoten eine Zeile und eine Spalte, woraus sich für n Knoten eine n$\times$n-Matrix ergibt. Ein Eintrag in der i-ten Zeile und j-ten Spalte gibt hierbei an, ob eine Kante von dem i-ten zu dem j-ten Knoten führt. Steht an dieser Stelle eine -1, ist keine Kante vorhanden. Steht an dieser Stelle eine 0, ist keine Kante vorhanden, da der Knoten sonst eine Kante auf sich selbst führen würde, was wir ausschließen. Ist der Wert größer als 0 so gibt er die Kosten für diesen Weg an.
+
 \subsubsection{Adjazenzliste}
+Eine Adjazenzliste eines Graphen ist eine Liste, die speichert, welche Knoten des Graphen durch eine Kante verbunden sind.
+Jeder Knoten hat seine eigene Liste, die seine Nachbarn beinhaltet.
+In unserem Fall speichert die Liste außerdem noch die Kosten zu den Nachbarn.
+
 
 \subsection{Graphengenerator}
+Im Graphengenerator gibt es zwei Methoden. 
+Die Methode $public static int[][] genNonDirectionMatrix(int Size)$ erstellt aus einer vorgegebenen Knotenanzahl einen Graphen in Matrix Darstellung.
+Die Methode $public static List<NodeEdgeList> genListGraph(int[][] matrix, List<Node<?>> nodes)$ erstellt aus einer Adjazensmatrix und einer Liste aller Knoten im Graph, die Adjazenslistendarstellung des Graphen.
+Es wird somit um einen Graphen in beiden Darstellungen zu erhalten, erst die Methode $genNonDirectionMatrix$ aufgerufen und mit ihrem Rückgabewert kann die Methode $genListGraph$ aufgerufen werden.
+
 
 \subsection{Algorithmus von Dykstra}
+Wir verzichten den Algorithmus von Dykstra zu erklären. Dies ist bereits im Skript behandelt worden.
+\begin{figure}[htp]
+  	\centering
+    \includegraphics[width=\textwidth]{./IMG/dykstra.png}
+    \caption[shortone]{UML Diagramm der Dykstra Implementierung}
+    \label{fig:plot}
+\end{figure}
+
 
 \subsection{Zählerintegration}
 
