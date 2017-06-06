@@ -2,31 +2,50 @@ package dykstra;
 
 import graph.Node;
 
-public class DNode extends Node implements Comparable<DNode>{
+public class DNode implements Comparable<DNode> {
+	/**
+	 * infinity
+	 */
 	public static final int UNCOST = -1;
-	
+
+	/**
+	 * node of interest
+	 */
 	public Node<?> node;
+	/**
+	 * gateway to goal
+	 */
 	public DNode pred;
+	/**
+	 * Cost to goal (min)
+	 */
 	public int cost;
+	/**
+	 * flag, if this node got its the shortest path to goal
+	 */
 	public boolean marked;
-	public static int datum = 0;
-	
 
-
+	/**
+	 * Constructor with
+	 * 
+	 * @param node
+	 */
 	public DNode(Node<?> node) {
-	  super(datum);
 		this.node = node;
 		pred = null;
 		cost = UNCOST;
 		marked = false;
 	}
-	
-	public void mark(){
+
+	/**
+	 * makes the node as done
+	 */
+	public void mark() {
 		marked = true;
 	}
 
-  @Override
-  public int compareTo(DNode o) {
-    return cost-o.cost;
-  }
+	@Override
+	public int compareTo(DNode o) {
+		return cost - o.cost;
+	}
 }

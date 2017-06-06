@@ -2,8 +2,6 @@ package graph;
 
 import java.util.List;
 
-import dykstra.DNode;
-
 /**
  * Interface of an Graph
  *
@@ -36,19 +34,14 @@ public interface iGraph {
 	 */
 	public void removeNode(Node<?> node);
 
-	/**
-	 * Travers from a node to another
-	 * @param from startNode
-	 * @param to   endnode
-	 */
-	public void traverse(Node<?> from, Node<?> to);
+	
+	///**
+	// * Travers from a node to another
+	// * @param from startNode
+	// * @param to   endnode
+	// */
+	//public void traverse(Node<?> from, Node<?> to);
 
-	/**
-	 * retruns all Neighbors of a Node
-	 * @param node node whoms neighbors are wanted
-	 * @return list of nodes
-	 */
-	public List<DNode> getNeighbors(DNode node);
 
 	/**
 	 * Returns the weight of an edge between 2 nodes

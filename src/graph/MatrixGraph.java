@@ -5,8 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import dykstra.DNode;
-
+/**
+ * Implementation of an Graph with an Adjazenzmatrix
+ * @author petra patretra
+ *
+ */
 public class MatrixGraph implements iGraph {
 
 	public Map<Node<?>, Integer> matrixMap;
@@ -95,13 +98,10 @@ public class MatrixGraph implements iGraph {
 	}
 
 	/**
-	 * TODO Was ist mit den Edges
-	 */
-	/**
 	 * Edges sollten auch entfernt werdn können, jedoch kann man dann
 	 * einfach weight auf -1 setzten.
 	 * also addEdge(from, to, -1)
-	 * in der List ist das Schwieriger.
+	 * 
 	 */
 	
 	@Override
@@ -122,11 +122,11 @@ public class MatrixGraph implements iGraph {
 
 	}
 
-	@Override
-	public void traverse(Node<?> from, Node<?> to) {
+	
+	//@Override
+	//public void traverse(Node<?> from, Node<?> to) {
 		// TODO Auto-generated method stub
-
-	}
+	//}
 
 	@Override
 	public List<Node<?>> getNeighbors(Node<?> node) {
@@ -142,25 +142,25 @@ public class MatrixGraph implements iGraph {
 		return temp;
 	}
 	
-	/**
-	 * Test ob ein edge existiert
-	 * 
-	 * @param from
-	 *   ursprngsknotens
-	 * @param to
-	 *   deastination Node 
-	 * @return
-	 *   wenn Edge existiert true, else false
-	 */
-	private boolean isEdge(Node<?> from, Node<?> to){
-		boolean ret = false;
-		Integer iFrom = matrixMap.get(from);
-		Integer iTo   = matrixMap.get(to);
-		if (iFrom != null && iTo !=null && matrix[iFrom][iTo] >= 0){
-			ret = true;
-		}
-		return ret;
-	}
+	///**
+	// * Test ob ein edge existiert
+	// * 
+	// * @param from
+	// *   ursprngsknotens
+	// * @param to
+	// *   deastination Node 
+	// * @return
+	// *   wenn Edge existiert true, else false
+	// */
+	//private boolean isEdge(Node<?> from, Node<?> to){
+	//	boolean ret = false;
+	//	Integer iFrom = matrixMap.get(from);
+	//	Integer iTo   = matrixMap.get(to);
+	//	if (iFrom != null && iTo !=null && matrix[iFrom][iTo] >= 0){
+	//		ret = true;
+	//	}
+	//	return ret;
+	//}
 	/**
 	 * Test ob ein edge existiert
 	 * 
@@ -195,11 +195,4 @@ public class MatrixGraph implements iGraph {
 	public List<Node<?>> getNodes() {
 		return nodes;
 	}
-
-	@Override
-	public List<DNode> getNeighbors(DNode node) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
-import graph.ListGraph;
-import graph.MatrixGraph;
 import graph.Node;
 import graph.NodeEdgeList;
 
@@ -32,7 +30,7 @@ public class GraphGenerator {
         	  tempMatrix[i][j] = 0;
           }
           else {
-        	  tmp=random.nextInt(100);//also 1% der fälle keine Kante?
+        	  tmp=random.nextInt(100);//also 1% der fï¿½lle keine Kante?
         	  if (tmp == 0){
         		  tempMatrix[i][j] = -1;
         		  tempMatrix[j][i] = -1;

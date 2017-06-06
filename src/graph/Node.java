@@ -36,6 +36,7 @@ public class Node<T> {
 		return datum;
 	}
 	
+	
 	/**
 	 * like equals() of Object
 	 * @param n note to check with

@@ -1,10 +1,7 @@
 package helper;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-
 /**
  * A file class for simpler O in I/O
  */

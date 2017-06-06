@@ -156,6 +156,7 @@ public class iGraphTest {
     listGraph.removeNode(node);
     matrixGraph.removeNode(node);
     boolean sizeIsSame=(listGraph.anzNodes==matrixGraph.anzNodes);
+    assertTrue(sizeIsSame); 
     sizeIsSame = (listGraph.anzNodes+1)==oldSize;
     assertTrue(sizeIsSame); 
     
