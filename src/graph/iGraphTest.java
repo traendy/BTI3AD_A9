@@ -43,33 +43,41 @@ public class iGraphTest {
 
   @Test
   public void testAddEdgeEdge() {
-    Node<Integer> node = new Node<Integer>(66);
-    listGraph.addNode(node);
-    matrixGraph.addNode(node);
-    Edge edge = new Edge(nodes.get(0), node, 999);
+    Edge edge = new Edge(nodes.get(0), nodes.get(2), 999);
     listGraph.addEdge(edge);
     matrixGraph.addEdge(edge);
-    
+    assertEquals(999, matrixGraph.matrix[0][2]);
+    assertEquals(999,(int) listGraph.graphList.get(0).neighbors.get(nodes.get(2)));
+    assertEquals(999,(int) listGraph.graphList.get(2).neighbors.get(nodes.get(0)));
   }
 
   @Test
   public void testAddEdgeNodeOfQNodeOfQInt() {
-    fail("Not yet implemented");
+    testAddEdgeEdge();
   }
 
   @Test
   public void testRemoveNode() {
-    fail("Not yet implemented");
+    Node<?> node = nodes.get(0);
+    nodes.remove(0);
+    int oldSize = listGraph.anzNodes;
+    listGraph.removeNode(node);
+    matrixGraph.removeNode(node);
+    boolean sizeIsSame=(listGraph.anzNodes==matrixGraph.anzNodes);
+    sizeIsSame = (listGraph.anzNodes+1)==oldSize;
+    assertTrue(sizeIsSame); 
+    
   }
 
-  @Test
-  public void testTraverse() {
-    fail("Not yet implemented");
-  }
 
   @Test
   public void testGetWeight() {
-    fail("Not yet implemented");
+
+    int mweight = matrixGraph.getWeight(nodes.get(0), nodes.get(1));
+    System.out.println(mweight);
+    int lweight = listGraph.getWeight(nodes.get(0), nodes.get(1));
+    System.out.println(lweight);
+    assertTrue(0==lweight-mweight);
   }
 
   @Test
@@ -102,7 +110,11 @@ public class iGraphTest {
       System.out.println(tempM.size());
       
     }
-    
+    for(int i=0; gotSomeNeighbors && i<tempL.size() && i<tempM.size();i++){
+      if(!tempL.get(i).equals(tempM.get(i))){
+        gotSomeNeighbors = false;
+      }
+    }
     assertTrue(gotSomeNeighbors);
     
   }

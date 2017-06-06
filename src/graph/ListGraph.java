@@ -43,6 +43,7 @@ public class ListGraph implements iGraph {
 	    }
 	  }
 	  if(temp==null){
+	    System.out.println("fehler addEDge");
 	   // throw new NodeNotFoundException();
 	  }
 	  //update oder setze list von from
@@ -61,6 +62,7 @@ public class ListGraph implements iGraph {
 	      }
 	    }
 	   if(temp==null){
+	     System.out.println("fehler addEDge");
 	     // throw new NodeNotFoundException();
 	    }
 	   //update oder setze list von to
@@ -113,23 +115,22 @@ public class ListGraph implements iGraph {
 	@Override
 	public int getWeight(Node<?> nodeA, Node<?> nodeB) {
 		//finde nodeA oder nodeB in graphList
-	  Node<?> temp = null;
+	  Node<?> temp = new Node<Object>(null);
 	  int index =0;
 	  int weight =-1;
-	  for(int i =0; i<graphList.size()||temp ==nodeA|| temp==nodeB; i++){
+	  if(nodeA.equals(null)|| nodeB.equals(null)){
+	    System.out.println("erere");
+	    return -1;
+	  }
+	  for(int i =0; i<graphList.size() && !temp.equals(nodeA); i++){
 	    temp = graphList.get(i).node;
-	    index++;
+	    index=i;
 	  }
-	  Node<?> notTemp =null;
-	  if(temp.equals(nodeA)){
-	    notTemp=nodeB;
-	  }else{
-	    notTemp=nodeA;
-	  }
+	 
 	  //gucke ob sie eine gemeinsame Edge haben und hole das weight
 	  for(int i =0; i<graphList.get(index).neighbors.size();i++){
-	    if(graphList.get(index).neighbors.containsKey(notTemp)){
-	      weight = graphList.get(index).neighbors.get(notTemp);
+	    if(graphList.get(index).neighbors.containsKey(nodeB)){
+	      weight = graphList.get(index).neighbors.get(nodeB);
 	    }
 	  }
 		return weight;
