@@ -18,7 +18,7 @@ public class FileWrapper {
 	 * 
 	 * @param names
 	 */
-	FileWrapper(String... names) {
+	public FileWrapper(String... names) {
 		files = new FileWriter[names.length];
 		int i = 0;
 		for (String name : names) {
