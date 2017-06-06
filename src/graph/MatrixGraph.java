@@ -25,11 +25,13 @@ public class MatrixGraph implements iGraph {
 	 *   Liste der nodes, wenn null, default nodes
 	 */
 	public MatrixGraph(int[][] matrix, List<Node<?>> nodes) {
+	  this.nodes = new ArrayList<>();
 		//super();
 		if (null != matrix){
 			this.matrix = matrix;
 			this.anzNodes = matrix[0].length;
 			matrixMap = new HashMap< Node<?>, Integer>();
+			
 			for (int i = 0; i < anzNodes; i++){
 				if (null == nodes){
 					Node<?> n = new Node<Object>(null);
@@ -50,9 +52,11 @@ public class MatrixGraph implements iGraph {
 			int index = nextInd;
 			matrixMap.put(node, index);
 			anzNodes++;
+			
 			if (matrix[0].length < anzNodes ){
 				enlargeMatrix(matrix[0].length);
 			}
+			
 			matrix[index][index] = 0;
 		}
 	}
@@ -74,6 +78,7 @@ public class MatrixGraph implements iGraph {
 		for (int i =0; i < oldLen; i++ ){
 			System.arraycopy(matrix[i], 0, newmat[i], 0, oldLen);
 		}
+		matrix=newmat;
 	}
 
 	@Override
