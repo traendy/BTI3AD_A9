@@ -6,12 +6,22 @@ import java.util.List;
 import dykstra.DNode;
 
 public class ListGraph implements iGraph {
-   public List <ArrayList<Node<?>>> graphList;
+   public List<NodeEdgeList> graphList;
    public int anzNodes =0;
+   
+   
+   
+   
   
-	@Override
+	public ListGraph(List<NodeEdgeList> graphList) {
+    super();
+    this.graphList = graphList;
+    this.anzNodes = graphList.size();
+  }
+
+  @Override
 	public void addNode(Node<?> node) {
-	  graphList.add(new ArrayList<Node<?>>());
+	  graphList.add(new NodeEdgeList(node, null));
 	  anzNodes++;
 	}
 
@@ -22,25 +32,60 @@ public class ListGraph implements iGraph {
 	}
 
 	@Override
-	public void addEdge(Node<?> from, Node<?> to, int weight) {
-	  graphList.get(from.id).add(to);
-	  graphList.get(to.id).add(from);
-	  //TODO handle weight
-    
-
+	public void addEdge(Node<?> from, Node<?> to, int weight){
+	  Node<?> temp = null;
+	  int index =0;
+	  //finde from
+	  for(int i =0;temp!=from || i<graphList.size(); i++){
+	    if(from.equals(graphList.get(i).node)){
+	      temp = graphList.get(i).node;
+	      index =i;
+	    }
+	  }
+	  if(temp==null){
+	   // throw new NodeNotFoundException();
+	  }
+	  //update oder setze list von from
+	  if(graphList.get(index).neighbors.containsKey(to)){
+	    graphList.get(index).neighbors.replace(to, weight);
+	  }else{
+	    graphList.get(index).neighbors.put(to, weight);
+	  }
+	  //finde to
+	  index =0;
+	  temp = null;
+	   for(int i =0;temp!=to || i<graphList.size(); i++){
+	      if(to.equals(graphList.get(i).node)){
+	        temp = graphList.get(i).node;
+	        index =i;
+	      }
+	    }
+	   if(temp==null){
+	     // throw new NodeNotFoundException();
+	    }
+	   //update oder setze list von to
+	    if(graphList.get(index).neighbors.containsKey(from)){
+	      graphList.get(index).neighbors.replace(from, weight);
+	    }else{
+	      graphList.get(index).neighbors.put(from, weight);
+	    }
+	  
 	}
 
 	@Override
 	public void removeNode(Node<?> node) {
-		graphList.remove(node.id);
-		for(int i =0; i<graphList.size();i++){
-		  for(Node<?> n: graphList.get(i)){
-		    if(n.equals(node)){
-		      graphList.get(i).remove(n);
-		    }
-		  }
-		}
-		anzNodes--;
+	  int index =0;
+	  //finde alle Knoten die node als nachbar haben und lösche node aus der Hashmap
+	  for(int i =0; i<graphList.size(); i++){
+	    if(!graphList.get(i).node.equals(node)){
+	      //ggf contains vorher?oder doppelte abfrage
+	      graphList.get(i).neighbors.remove(node);
+	    }else if(graphList.get(i).node.equals(node)){
+	      index = i;
+	    }
+	  }
+	  graphList.remove(index);
+	  anzNodes--;
 	}
 
 	@Override
@@ -51,20 +96,51 @@ public class ListGraph implements iGraph {
 
 	@Override
 	public List<Node<?>> getNeighbors(Node<?> node) {
-	
-		return graphList.get(node.id);
+	  List<Node<?>> temp = new ArrayList<>();
+	  //finde node in graphList
+	  int index =0;
+	  while(!graphList.get(index).node.equals(node)){
+	    index++;
+	  }
+	  //füge alle Nachbarn zu der Liste hinzu
+	  for(int i =0; i<graphList.get(index).neighbors.size();i++){
+	    temp.addAll(graphList.get(index).neighbors.keySet());
+	  }
+		return temp;
 	}
 
 	@Override
 	public int getWeight(Node<?> nodeA, Node<?> nodeB) {
-		// TODO 
-		return 0;
+		//finde nodeA oder nodeB in graphList
+	  Node<?> temp = null;
+	  int index =0;
+	  int weight =-1;
+	  for(int i =0; i<graphList.size()||temp ==nodeA|| temp==nodeB; i++){
+	    temp = graphList.get(i).node;
+	    index++;
+	  }
+	  Node<?> notTemp =null;
+	  if(temp.equals(nodeA)){
+	    notTemp=nodeB;
+	  }else{
+	    notTemp=nodeA;
+	  }
+	  //gucke ob sie eine gemeinsame Edge haben und hole das weight
+	  for(int i =0; i<graphList.get(index).neighbors.size();i++){
+	    if(graphList.get(index).neighbors.containsKey(notTemp)){
+	      weight = graphList.get(index).neighbors.get(notTemp);
+	    }
+	  }
+		return weight;
 	}
 
 	@Override
 	public List<Node<?>> getNodes() {
-		// TODO
-	  return null;
+		List<Node<?>> nodes = new ArrayList<>();
+		for(int i =0; i<graphList.size();i++){
+		  nodes.add(graphList.get(i).node);
+		}
+	  return nodes;
 	}
 
   @Override

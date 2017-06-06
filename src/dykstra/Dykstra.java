@@ -186,7 +186,7 @@ public class Dykstra {
 			nodeK.cost = cost;
 			nodeK.pred = nodeV;
 		}
-		// TODO nimm k in R mit auf
+		
 	}
 
 }
