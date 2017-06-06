@@ -47,7 +47,7 @@ public interface iGraph {
 	 * Returns the weight of an edge between 2 nodes
 	 * @param nodeA start node
 	 * @param nodeB end node of edge
-	 * @return weight of the edge
+	 * @return weight of the edge, if no connection: -1
 	 */
 	public int getWeight(Node<?> nodeA, Node<?> nodeB);
 	
