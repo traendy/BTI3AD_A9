@@ -7,6 +7,7 @@ import java.util.List;
 
 import graph.Node;
 import graph.iGraph;
+import helper.Count;
 
 /**
  * 
@@ -26,6 +27,7 @@ public class Dykstra {
 	 * @param goal
 	 */
 	public Dykstra(iGraph graph, Node<?> goal) {
+		Count.reset();
 		this.graph = graph;
 		this.goal = goal;
 		this.map = new HashMap<Node<?>, DNode>();

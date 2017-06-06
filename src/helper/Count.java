@@ -13,6 +13,16 @@ public class Count {
 	 * all my fingers
 	 */
 	public static int count;
+	
+	/**
+	 * counting the inner loop of neighbor
+	 */
+	public static int neighbor;
+	
+	/**
+	 * counting the getweight
+	 */
+	public static int getweight;
 
 	/**
 	 * increment, i love it
@@ -31,7 +41,7 @@ public class Count {
 			break;
 
 		case 9000:
-			System.out.println("NainTausend, HAHAHAHA");
+			System.out.println("NainTausend,  HAHAHAHA");
 			break;
 		}
 	}
@@ -41,6 +51,8 @@ public class Count {
 	 */
 	public static void reset() {
 		count = 0;
+		getweight=0;
+		neighbor=0;
 		System.out.println("HAHAHA. Und nochmal von vorn! DONNER");
 	}
 

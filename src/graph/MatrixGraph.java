@@ -133,6 +133,8 @@ public class MatrixGraph implements iGraph {
 		Integer index = matrixMap.get(node);
 		if (index != null) {
 			for (Node<?> neighbor : matrixMap.keySet()) {
+				Count.up();
+				Count.neighbor++;
 				if (!neighbor.equals(node) && isEdge(index, neighbor)) {
 					temp.add(neighbor);
 				}
@@ -181,6 +183,8 @@ public class MatrixGraph implements iGraph {
 	@Override
 	public int getWeight(Node<?> nodeA, Node<?> nodeB) {
 		int weight = -1;
+		Count.up();
+		Count.getweight++;
 		Integer iFrom = matrixMap.get(nodeA);
 		Integer iTo = matrixMap.get(nodeB);
 		if (iFrom != null && iTo != null) {

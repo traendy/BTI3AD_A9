@@ -3,6 +3,8 @@ package graph;
 import java.util.ArrayList;
 import java.util.List;
 
+import helper.Count;
+
 public class ListGraph implements iGraph {
 	public List<NodeEdgeList> graphList;
 	public int anzNodes = 0;
@@ -98,6 +100,8 @@ public class ListGraph implements iGraph {
 		List<Node<?>> temp = new ArrayList<>();
 		// finde node in graphList
 		int index = 0;
+		Count.up();
+		Count.neighbor++;
 		while (!graphList.get(index).node.equals(node)) {
 			index++;
 		}
@@ -126,6 +130,8 @@ public class ListGraph implements iGraph {
 		// gucke ob sie eine gemeinsame Edge haben und hole das weight
 		for (int i = 0; i < graphList.get(index).neighbors.size(); i++) {
 			if (graphList.get(index).neighbors.containsKey(nodeB)) {
+				Count.up();
+				Count.getweight++;
 				weight = graphList.get(index).neighbors.get(nodeB);
 			}
 		}
