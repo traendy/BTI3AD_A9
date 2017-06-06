@@ -10,5 +10,5 @@ myloglog_tn(arr, 10, "getNeighborCount", names)
 
 arr = dlread("getweight.txt", ";", True)
 names = ['matrix','list']
-myloglog_tn(arr, 10, "total ", names)
+myloglog_tn(arr, 10, "total", names)
 
