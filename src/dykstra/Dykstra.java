@@ -85,7 +85,7 @@ public class Dykstra {
 	 */
 	private void updateCost(DNode nodeK, DNode nodeV) {
 		int cost = nodeV.cost + graph.getWeight(nodeK.node, nodeV.node);
-		if (nodeK.cost > cost || nodeK.cost == DNode.UNCOST) {
+		if (nodeK.cost > cost || nodeK.cost > 0) {
 			nodeK.cost = cost;
 			nodeK.pred = nodeV;
 		}

@@ -1,5 +1,8 @@
 package graph;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A Nodeclass for a Graph, very simple
  * @author peter lupadder
@@ -24,9 +27,21 @@ public class Node<T> {
 	 * Constructor
 	 * @param datum
 	 */
+	
+	List<Edge> neighbors ;
+	
 	public Node(T datum){
 		this.datum = datum;
 		id = idCount++;
+	}
+	
+	public Node(T datum, Edge ...edges ){
+		this.datum = datum;
+		neighbors = new ArrayList<Edge>();
+		for (Edge e: edges){
+			neighbors.add(e);
+		}
+		id = idCount++; 
 	}
 	/**
 	 * Getter datum
@@ -36,6 +51,9 @@ public class Node<T> {
 		return datum;
 	}
 	
+	public void addEdge( Edge e ){
+		neighbors.add(e);
+	}
 	
 	/**
 	 * like equals() of Object
