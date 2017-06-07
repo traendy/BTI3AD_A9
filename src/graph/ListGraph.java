@@ -100,9 +100,10 @@ public class ListGraph implements iGraph {
 		List<Node<?>> temp = new ArrayList<>();
 		// finde node in graphList
 		int index = 0;
-		Count.up();
-		Count.neighbor++;
+		
 		while (!graphList.get(index).node.equals(node)) {
+			Count.up();
+			Count.neighbor++;
 			index++;
 		}
 		// f�ge alle Nachbarn zu der Liste hinzu

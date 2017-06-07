@@ -4,11 +4,11 @@ arr = dlread("getweight.txt", ";", True)
 names = ['matrix','list']
 myloglog_tn(arr, 10, "getWeigtcount", names)
 
-arr = dlread("getweight.txt", ";", True)
+arr = dlread("neighbor.txt", ";", True)
 names = ['matrix','list']
 myloglog_tn(arr, 10, "getNeighborCount", names)
 
-arr = dlread("getweight.txt", ";", True)
+arr = dlread("total.txt", ";", True)
 names = ['matrix','list']
 myloglog_tn(arr, 10, "total", names)
 

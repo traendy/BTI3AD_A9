@@ -61,11 +61,13 @@ public class Sample {
             
     		
     		for (int j =0; j < TIMES; j++){
+    			Count.count=0;Count.getweight=0;Count.neighbor=0;
     			dykmg = new Dykstra(mg,nodeList.get(j));
     			mgWeightSum += Count.getweight;
     			mgNeighborSum += Count.neighbor;
     			mgCountSum += Count.count;
     			System.out.println("matrix end");
+    			Count.count=0;Count.getweight=0;Count.neighbor=0;
     			dyklg = new Dykstra(lg,nodeList.get(j));
     			lgWeightSum += Count.getweight;
     			lgNeighborSum += Count.neighbor;

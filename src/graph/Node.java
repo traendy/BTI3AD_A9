@@ -77,7 +77,7 @@ public boolean equals(Object obj) {
 	if (!(obj instanceof Node)) {
 		return false;
 	}
-	Node other = (Node) obj;
+	Node<?> other = (Node<?>) obj;
 	if (id != other.id) {
 		return false;
 	}
