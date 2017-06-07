@@ -32,6 +32,7 @@ public class Node<T> {
 	
 	public Node(T datum){
 		this.datum = datum;
+		neighbors = new ArrayList<Edge>();
 		id = idCount++;
 	}
 	
