@@ -51,7 +51,7 @@ public class iGraphTest {
       dykNoList.add(new Node<Integer>(i));
     }
     dykMatGra = new MatrixGraph(dykmat, dykNoList);
-    dykLiGra = new ListGraph(GraphGenerator.genListGraph(dykmat, dykNoList));
+ //   dykLiGra = new ListGraph(GraphGenerator.genListGraph(dykmat, dykNoList));
   }
   /**
    * tests if get Neigbhors works

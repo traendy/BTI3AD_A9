@@ -66,7 +66,7 @@ public class GraphGenerator {
               temp.addEdge(new Edge(temp, nodes.get(j),matrix[i][j]));
           }
         }
-        list.put(i,temp);
+        list.put(temp.id,temp);
       }
       
       

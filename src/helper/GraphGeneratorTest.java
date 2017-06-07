@@ -13,7 +13,7 @@ public class GraphGeneratorTest {
 
   @Test
   public void testPrintGraph() {
-    GraphGenerator.printGraph(GraphGenerator.genNonDirectionMatrix(10));
+ //   GraphGenerator.printGraph(GraphGenerator.genNonDirectionMatrix(10));
   }
 
   @Test

@@ -7,29 +7,32 @@ import java.util.List;
 import helper.Count;
 
 public class ListGraph implements iGraph {
-	public List<NodeEdgeList> graphList;
+	public HashMap<Integer, Node<?>> graphList;
 	public int anzNodes = 0;
 	public List<Node<?>> nodes;
 
-	public ListGraph(List<NodeEdgeList> graphList) {
+	public ListGraph(HashMap<Integer, Node<?>> graphList) {
 		super();
 		this.graphList = graphList;
 		this.anzNodes = graphList.size();
 		nodes = new ArrayList<>();
-		for (int i = 0; i < graphList.size(); i++) {
-			nodes.add(graphList.get(i).node);
+		
+		for (Integer i: graphList.keySet()){
+			nodes.add(graphList.get(i));
 		}
+		// }
+
 	}
 
 	@Override
 	public void addNode(Node<?> node) {
-		graphList.add(new NodeEdgeList(node, null));
-		anzNodes++;
+		// graphList.add(new NodeEdgeList(node, null));
+		// anzNodes++;
 	}
 
 	@Override
 	public void addEdge(Edge edge) {
-		addEdge(edge.from, edge.to, edge.weight);
+		// addEdge(edge.from, edge.to, edge.weight);
 	}
 
 	@Override
@@ -38,40 +41,40 @@ public class ListGraph implements iGraph {
 		int index = 0;
 		// finde from
 		for (int i = 0; temp != from || i < graphList.size(); i++) {
-			if (from.equals(graphList.get(i).node)) {
-				temp = graphList.get(i).node;
-				index = i;
-			}
+			// if (from.equals(graphList.get(i).node)) {
+			// temp = graphList.get(i).node;
+			index = i;
+			// }
 		}
 		if (temp == null) {
 			System.out.println("fehler addEDge");
 			// throw new NodeNotFoundException();
 		}
 		// update oder setze list von from
-		if (graphList.get(index).neighbors.containsKey(to)) {
-			graphList.get(index).neighbors.replace(to, weight);
-		} else {
-			graphList.get(index).neighbors.put(to, weight);
-		}
+		// if (graphList.get(index).neighbors.containsKey(to)) {
+		// graphList.get(index).neighbors.replace(to, weight);
+		// } else {
+		// graphList.get(index).neighbors.put(to, weight);
+		// }
 		// finde to
 		index = 0;
 		temp = null;
 		for (int i = 0; temp != to || i < graphList.size(); i++) {
-			if (to.equals(graphList.get(i).node)) {
-				temp = graphList.get(i).node;
-				index = i;
-			}
+			// if (to.equals(graphList.get(i).node)) {
+			// temp = graphList.get(i).node;
+			index = i;
+			// }
 		}
 		if (temp == null) {
 			System.out.println("fehler addEDge");
 			// throw new NodeNotFoundException();
 		}
 		// update oder setze list von to
-		if (graphList.get(index).neighbors.containsKey(from)) {
-			graphList.get(index).neighbors.replace(from, weight);
-		} else {
-			graphList.get(index).neighbors.put(from, weight);
-		}
+		// if (graphList.get(index).neighbors.containsKey(from)) {
+		// graphList.get(index).neighbors.replace(from, weight);
+		// } else {
+		// graphList.get(index).neighbors.put(from, weight);
+		// 7 }
 
 	}
 
@@ -81,12 +84,12 @@ public class ListGraph implements iGraph {
 		// finde alle Knoten die node als nachbar haben und l�sche node aus der
 		// Hashmap
 		for (int i = 0; i < graphList.size(); i++) {
-			if (!graphList.get(i).node.equals(node)) {
-				// ggf contains vorher?oder doppelte abfrage
-				graphList.get(i).neighbors.remove(node);
-			} else if (graphList.get(i).node.equals(node)) {
-				index = i;
-			}
+			// if (!graphList.get(i).node.equals(node)) {
+			// ggf contains vorher?oder doppelte abfrage
+			// graphList.get(i).neighbors.remove(node);
+			// } else if (graphList.get(i).node.equals(node)) {
+			// index = i;
+			// }
 		}
 		graphList.remove(index);
 		anzNodes--;
@@ -102,17 +105,15 @@ public class ListGraph implements iGraph {
 	@Override
 	public List<Node<?>> getNeighbors(Node<?> node) {
 		List<Node<?>> temp = new ArrayList<>();
+
 		// finde node in graphList
 		int index = 0;
 
-		while (!graphList.get(index).node.equals(node)) {
-			Count.up();
+		for (Edge e : graphList.get(node.id).neighbors) {
 			Count.neighbor++;
-			index++;
+			Count.up();
+			temp.add(e.getTo());
 		}
-		// f�ge alle Nachbarn zu der Liste hinzu
-
-		temp.addAll(graphList.get(index).neighbors.keySet());
 
 		return temp;
 	}
@@ -123,21 +124,29 @@ public class ListGraph implements iGraph {
 		Node<?> temp = new Node<Object>(null);
 		int index = 0;
 		int weight = -1;
-		if (nodeA.equals(null) || nodeB.equals(null)) {
-			System.out.println("erere");
-			return -1;
-		}
-		for (int i = 0; i < graphList.size() && !temp.equals(nodeA); i++) {
-			temp = graphList.get(i).node;
-			index = i;
+
+		for (Edge e : nodeA.neighbors) {
+			 Count.up();
+			 Count.getweight++;
+			if (e.to.equals(nodeB)) {
+				weight = e.getWeigth();
+			}
 		}
 
+		// if (nodeA.equals(null) || nodeB.equals(null)) {
+		// System.out.println("erere");
+		// return -1;
+		// }
+		// for (int i = 0; i < graphList.size() && !temp.equals(nodeA); i++) {
+		// temp = graphList.get(i).node;
+		// index = i;
+		// }
+
 		// gucke ob sie eine gemeinsame Edge haben und hole das weight
-		if (graphList.get(index).neighbors.containsKey(nodeB)) {
-			Count.up();
-			Count.getweight++;
-			weight = graphList.get(index).neighbors.get(nodeB);
-		}
+		// if (graphList.get(index).neighbors.containsKey(nodeB)) {
+		
+		// weight = graphList.get(index).neighbors.get(nodeB);
+		// }
 		return weight;
 	}
 
