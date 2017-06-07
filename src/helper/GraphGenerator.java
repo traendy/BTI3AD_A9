@@ -36,7 +36,7 @@ public class GraphGenerator {
     	  edgeCount=0;
     	  for(int j=i; j < Size ;j++){
     		  tmp = random.nextInt(100);
-        	  if (tmp < 20 && edgeCount != nEdges){
+        	  if (tmp < 50 && edgeCount != nEdges){
               edgeCount++;
     		  tempMatrix[i][j] = random.nextInt(10)+1;
     		  tempMatrix[j][i] = tempMatrix[i][j];
