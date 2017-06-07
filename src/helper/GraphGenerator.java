@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+import graph.Edge;
 import graph.Node;
 import graph.NodeEdgeList;
 
@@ -55,20 +56,23 @@ public class GraphGenerator {
      * @param nodes List of all Nodes in a Graph
      * @return listGraph representation of a Graph
      */
-    public static List<NodeEdgeList> genListGraph(int[][] matrix, List<Node<?>> nodes){
-      List<NodeEdgeList> list = new ArrayList<>();
+    public static List<Node<?>> genListGraph(int[][] matrix, List<Node<?>> nodes){
+      List<Node<?>> list = new ArrayList<>();
       for(int i =0; i<matrix.length; i++){
         Node<?> temp = nodes.get(i);
-        HashMap<Node<?>, Integer> tempNeighbors = new HashMap<>();
+        
         for(int j =0; j<matrix.length; j++){
           if(i!=j && matrix[i][j]>0){
-              tempNeighbors.put(nodes.get(j), matrix[i][j]);
+              temp.addEdge(new Edge(temp, nodes.get(j),matrix[i][j]));
           }
         }
-        list.add(new NodeEdgeList(temp, tempNeighbors));
+        list.add(temp);
       }
       
       
       return list;
     }
+      
+      
+ 
 }
