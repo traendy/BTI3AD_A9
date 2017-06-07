@@ -21,26 +21,32 @@ public class GraphGenerator {
      * @return Matrixdarstellung des Graphen
      */
     public static int[][] genNonDirectionMatrix(int Size){
+      int nEdges = 2;
+      int edgeCount = 0;
+      int doneIndex =0;
       int[][] tempMatrix = new int[Size][Size];
       Random random = new Random();
       int tmp;
       for(int   i=0; i < Size ;i++){
         for(int j=i; j < Size ;j++){
-          if (i == j ) {
-        	  tempMatrix[i][j] = 0;
-          }
-          else {
-        	  tmp=random.nextInt(100);//also 50% der f�lle keine Kante?
-        	  if (tmp%2 == 0){
         		  tempMatrix[i][j] = -1;
         		  tempMatrix[j][i] = -1;
-        	  } else {
-        		  tempMatrix[i][j] = tmp;
-        		  tempMatrix[j][i] = tmp;
-        	  }
           }
         } 
+      for(int i=1; i < Size- nEdges  ; i++){
+    	  edgeCount=0;
+    	  for(int j=i; j < Size ;j++){
+    		  tmp = random.nextInt(100);
+        	  if (tmp < 2 && edgeCount == nEdges){
+              edgeCount++;
+    		  tempMatrix[i][j] = random.nextInt(10)+1;
+    		  tempMatrix[j][i] = tempMatrix[i][j];
+        	  }
+    	  }
       }
+      
+      for (int i =0 ; i < Size ; i++)
+    	  tempMatrix[i][i] = 0;
       return tempMatrix;
     }
     
