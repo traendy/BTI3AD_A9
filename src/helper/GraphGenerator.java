@@ -56,8 +56,8 @@ public class GraphGenerator {
      * @param nodes List of all Nodes in a Graph
      * @return listGraph representation of a Graph
      */
-    public static List<Node<?>> genListGraph(int[][] matrix, List<Node<?>> nodes){
-      List<Node<?>> list = new ArrayList<>();
+    public static HashMap<Integer,Node<?>> genListGraph(int[][] matrix, List<Node<?>> nodes){
+      HashMap<Integer,Node<?>> list = new HashMap<>();
       for(int i =0; i<matrix.length; i++){
         Node<?> temp = nodes.get(i);
         
@@ -66,7 +66,7 @@ public class GraphGenerator {
               temp.addEdge(new Edge(temp, nodes.get(j),matrix[i][j]));
           }
         }
-        list.add(temp);
+        list.put(i,temp);
       }
       
       
