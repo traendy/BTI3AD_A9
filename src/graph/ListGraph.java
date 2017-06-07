@@ -8,11 +8,16 @@ import helper.Count;
 public class ListGraph implements iGraph {
 	public List<NodeEdgeList> graphList;
 	public int anzNodes = 0;
+	public List<Node<?>> nodes;
 
 	public ListGraph(List<NodeEdgeList> graphList) {
 		super();
 		this.graphList = graphList;
 		this.anzNodes = graphList.size();
+		nodes = new ArrayList<>();
+		for (int i = 0; i < graphList.size(); i++) {
+			nodes.add(graphList.get(i).node);
+		}
 	}
 
 	@Override
@@ -24,7 +29,6 @@ public class ListGraph implements iGraph {
 	@Override
 	public void addEdge(Edge edge) {
 		addEdge(edge.from, edge.to, edge.weight);
-
 	}
 
 	@Override
@@ -88,19 +92,18 @@ public class ListGraph implements iGraph {
 	}
 
 	/*
-	@Override
-	public void traverse(Node<?> from, Node<?> to) {
-		// TODO Auto-generated method stub
-
-	}
-	*/
+	 * @Override public void traverse(Node<?> from, Node<?> to) { // TODO
+	 * Auto-generated method stub
+	 * 
+	 * }
+	 */
 
 	@Override
 	public List<Node<?>> getNeighbors(Node<?> node) {
 		List<Node<?>> temp = new ArrayList<>();
 		// finde node in graphList
 		int index = 0;
-		
+
 		while (!graphList.get(index).node.equals(node)) {
 			Count.up();
 			Count.neighbor++;
@@ -129,22 +132,16 @@ public class ListGraph implements iGraph {
 		}
 
 		// gucke ob sie eine gemeinsame Edge haben und hole das weight
-		for (int i = 0; i < graphList.get(index).neighbors.size(); i++) {
-			if (graphList.get(index).neighbors.containsKey(nodeB)) {
-				Count.up();
-				Count.getweight++;
-				weight = graphList.get(index).neighbors.get(nodeB);
-			}
+		if (graphList.get(index).neighbors.containsKey(nodeB)) {
+			Count.up();
+			Count.getweight++;
+			weight = graphList.get(index).neighbors.get(nodeB);
 		}
 		return weight;
 	}
 
 	@Override
 	public List<Node<?>> getNodes() {
-		List<Node<?>> nodes = new ArrayList<>();
-		for (int i = 0; i < graphList.size(); i++) {
-			nodes.add(graphList.get(i).node);
-		}
 		return nodes;
 	}
 
