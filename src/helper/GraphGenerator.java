@@ -23,7 +23,6 @@ public class GraphGenerator {
     public static int[][] genNonDirectionMatrix(int Size){
       int nEdges = 2;
       int edgeCount = 0;
-      int doneIndex =0;
       int[][] tempMatrix = new int[Size][Size];
       Random random = new Random();
       int tmp;
@@ -37,7 +36,7 @@ public class GraphGenerator {
     	  edgeCount=0;
     	  for(int j=i; j < Size ;j++){
     		  tmp = random.nextInt(100);
-        	  if (tmp < 2 && edgeCount == nEdges){
+        	  if (tmp < 20 && edgeCount != nEdges){
               edgeCount++;
     		  tempMatrix[i][j] = random.nextInt(10)+1;
     		  tempMatrix[j][i] = tempMatrix[i][j];
